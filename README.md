@@ -2,6 +2,12 @@
 
 ## ファイル
 character_sheet_v1.0.json（ComfyUI UI フォーマット）
+8種類のフォームの画像を生成します。
+
+character_sheet_card_v1.0.json
+上記に加えて、2X8並列の4102x2060ピクセルの大きなタイル画像を生成します。
+
+
 
 ## 構成 (87ノード、154リンク)
 ###	ビュー	出力プレフィックス
@@ -23,6 +29,9 @@ character_sheet_v1.0.json（ComfyUI UI フォーマット）
 
 
 ## 使用モデル（元ワークフローと同じ）
+### templates-1_click_multiple_character_angles-v1.0_api.json
+上記を改良しています。
+
 VAE: qwen_image_vae.safetensors
 
 CLIP: qwen_2.5_vl_7b_fp8_scaled.safetensors
