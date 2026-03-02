@@ -1,0 +1,5776 @@
+{
+  "last_node_id": 100,
+  "last_link_id": 154,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "LoadImage",
+      "pos": [
+        -1200,
+        900
+      ],
+      "size": [
+        430,
+        450
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            3,
+            22,
+            41,
+            60,
+            79,
+            98,
+            117,
+            136
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "title": "Load Character Image",
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "Qwen-Image-2512-I2I_00014_.png",
+        "image"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "VAELoader",
+      "pos": [
+        -1200,
+        230
+      ],
+      "size": [
+        430,
+        70
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "slot_index": 0,
+          "links": [
+            5,
+            13,
+            16,
+            20,
+            24,
+            32,
+            35,
+            39,
+            43,
+            51,
+            54,
+            58,
+            62,
+            70,
+            73,
+            77,
+            81,
+            89,
+            92,
+            96,
+            100,
+            108,
+            111,
+            115,
+            119,
+            127,
+            130,
+            134,
+            138,
+            146,
+            149,
+            153
+          ]
+        }
+      ],
+      "title": "VAEを読み込む",
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "qwen_image_vae.safetensors"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "CLIPLoader",
+      "pos": [
+        -1200,
+        320
+      ],
+      "size": [
+        430,
+        130
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "slot_index": 0,
+          "links": [
+            12,
+            15,
+            31,
+            34,
+            50,
+            53,
+            69,
+            72,
+            88,
+            91,
+            107,
+            110,
+            126,
+            129,
+            145,
+            148
+          ]
+        }
+      ],
+      "title": "CLIPを読み込む",
+      "properties": {
+        "Node name for S&R": "CLIPLoader"
+      },
+      "widgets_values": [
+        "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+        "qwen_image",
+        "default"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "UNETLoader",
+      "pos": [
+        -1200,
+        470
+      ],
+      "size": [
+        430,
+        93
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            1
+          ]
+        }
+      ],
+      "title": "拡散モデルを読み込む",
+      "properties": {
+        "Node name for S&R": "UNETLoader"
+      },
+      "widgets_values": [
+        "qwen_image_edit_2509_fp8_e4m3fn.safetensors",
+        "default"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "LoraLoaderModelOnly",
+      "pos": [
+        -1200,
+        580
+      ],
+      "size": [
+        430,
+        80
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            2
+          ]
+        }
+      ],
+      "title": "LoRA - Lightning 4steps",
+      "properties": {
+        "Node name for S&R": "LoraLoaderModelOnly"
+      },
+      "widgets_values": [
+        "Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors",
+        1
+      ]
+    },
+    {
+      "id": 6,
+      "type": "LoraLoaderModelOnly",
+      "pos": [
+        -1200,
+        680
+      ],
+      "size": [
+        430,
+        80
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            7,
+            26,
+            45,
+            64,
+            83,
+            102,
+            121,
+            140
+          ]
+        }
+      ],
+      "title": "LoRA - Multiple Angles",
+      "properties": {
+        "Node name for S&R": "LoraLoaderModelOnly"
+      },
+      "widgets_values": [
+        "Qwen-Edit-2509-Multiple-angles.safetensors",
+        1
+      ]
+    },
+    {
+      "id": 10,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        450,
+        200
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "value",
+          "type": "STRING",
+          "widget": {
+            "name": "value"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            10
+          ]
+        }
+      ],
+      "title": "01 - Front View (正面全身)",
+      "properties": {
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        "Show the character in a full body front view, facing directly toward the camera, neutral standing A-pose with arms slightly away from the body, full figure visible from head to toe"
+      ]
+    },
+    {
+      "id": 11,
+      "type": "ImageScaleToTotalPixels",
+      "pos": [
+        490,
+        0
+      ],
+      "size": [
+        310,
+        78
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            4,
+            11,
+            17
+          ]
+        }
+      ],
+      "title": "画像を総ピクセルにスケール",
+      "properties": {
+        "Node name for S&R": "ImageScaleToTotalPixels"
+      },
+      "widgets_values": [
+        "nearest-exact",
+        1,
+        1
+      ]
+    },
+    {
+      "id": 12,
+      "type": "VAEEncode",
+      "pos": [
+        850,
+        0
+      ],
+      "size": [
+        215,
+        90
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pixels",
+          "type": "IMAGE",
+          "link": 4
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 5
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            6
+          ]
+        }
+      ],
+      "title": "VAEエンコード",
+      "properties": {
+        "Node name for S&R": "VAEEncode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 13,
+      "type": "TextEncodeQwenImageEditPlus",
+      "pos": [
+        0,
+        260
+      ],
+      "size": [
+        450,
+        200
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 15
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "shape": 7,
+          "link": 16
+        },
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "shape": 7,
+          "link": 17
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            18
+          ]
+        }
+      ],
+      "title": "TextEncode Negative",
+      "properties": {
+        "Node name for S&R": "TextEncodeQwenImageEditPlus"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 14,
+      "type": "ModelSamplingAuraFlow",
+      "pos": [
+        1130,
+        0
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 7
+        },
+        {
+          "name": "shift",
+          "type": "FLOAT",
+          "widget": {
+            "name": "shift"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            8
+          ]
+        }
+      ],
+      "title": "モデルサンプリングオーラフロー",
+      "properties": {
+        "Node name for S&R": "ModelSamplingAuraFlow"
+      },
+      "widgets_values": [
+        3
+      ]
+    },
+    {
+      "id": 15,
+      "type": "CFGNorm",
+      "pos": [
+        1130,
+        85
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 8
+        },
+        {
+          "name": "strength",
+          "type": "FLOAT",
+          "widget": {
+            "name": "strength"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "patched_model",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            9
+          ]
+        }
+      ],
+      "title": "CFG正規化",
+      "properties": {
+        "Node name for S&R": "CFGNorm"
+      },
+      "widgets_values": [
+        1
+      ]
+    },
+    {
+      "id": 16,
+      "type": "TextEncodeQwenImageEditPlus",
+      "pos": [
+        490,
+        160
+      ],
+      "size": [
+        450,
+        200
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 12
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "shape": 7,
+          "link": 13
+        },
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "shape": 7,
+          "link": 11
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 10
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            14
+          ]
+        }
+      ],
+      "title": "TextEncode Positive",
+      "properties": {
+        "Node name for S&R": "TextEncodeQwenImageEditPlus"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 17,
+      "type": "KSampler",
+      "pos": [
+        1130,
+        175
+      ],
+      "size": [
+        315,
+        350
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 9
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 14
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 18
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 6
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        },
+        {
+          "name": "cfg",
+          "type": "FLOAT",
+          "widget": {
+            "name": "cfg"
+          },
+          "link": null
+        },
+        {
+          "name": "sampler_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "sampler_name"
+          },
+          "link": null
+        },
+        {
+          "name": "scheduler",
+          "type": "COMBO",
+          "widget": {
+            "name": "scheduler"
+          },
+          "link": null
+        },
+        {
+          "name": "denoise",
+          "type": "FLOAT",
+          "widget": {
+            "name": "denoise"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            19
+          ]
+        }
+      ],
+      "title": "Kサンプラー",
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        496224666602166,
+        "randomize",
+        4,
+        1,
+        "euler",
+        "simple",
+        1
+      ]
+    },
+    {
+      "id": 18,
+      "type": "VAEDecode",
+      "pos": [
+        1500,
+        455
+      ],
+      "size": [
+        215,
+        50
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 19
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 20
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            21
+          ]
+        }
+      ],
+      "title": "VAEデコード",
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 19,
+      "type": "SaveImage",
+      "pos": [
+        1770,
+        140
+      ],
+      "size": [
+        420,
+        500
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 21
+        }
+      ],
+      "outputs": [],
+      "title": "Save - 01 - Front View (正面全身)",
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "CharSheet-01_front"
+      ]
+    },
+    {
+      "id": 20,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        2200,
+        0
+      ],
+      "size": [
+        450,
+        200
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "value",
+          "type": "STRING",
+          "widget": {
+            "name": "value"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            29
+          ]
+        }
+      ],
+      "title": "02 - Back View (背面全身)",
+      "properties": {
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        "Show the character from behind in a full body back view, rear facing the camera, neutral standing pose, showing all back details, hair, costume and accessories from behind, full figure head to toe"
+      ]
+    },
+    {
+      "id": 21,
+      "type": "ImageScaleToTotalPixels",
+      "pos": [
+        2690,
+        0
+      ],
+      "size": [
+        310,
+        78
+      ],
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 22
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            23,
+            30,
+            36
+          ]
+        }
+      ],
+      "title": "画像を総ピクセルにスケール",
+      "properties": {
+        "Node name for S&R": "ImageScaleToTotalPixels"
+      },
+      "widgets_values": [
+        "nearest-exact",
+        1,
+        1
+      ]
+    },
+    {
+      "id": 22,
+      "type": "VAEEncode",
+      "pos": [
+        3050,
+        0
+      ],
+      "size": [
+        215,
+        90
+      ],
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pixels",
+          "type": "IMAGE",
+          "link": 23
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 24
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            25
+          ]
+        }
+      ],
+      "title": "VAEエンコード",
+      "properties": {
+        "Node name for S&R": "VAEEncode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 23,
+      "type": "TextEncodeQwenImageEditPlus",
+      "pos": [
+        2200,
+        260
+      ],
+      "size": [
+        450,
+        200
+      ],
+      "flags": {},
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 34
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "shape": 7,
+          "link": 35
+        },
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "shape": 7,
+          "link": 36
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            37
+          ]
+        }
+      ],
+      "title": "TextEncode Negative",
+      "properties": {
+        "Node name for S&R": "TextEncodeQwenImageEditPlus"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 24,
+      "type": "ModelSamplingAuraFlow",
+      "pos": [
+        3330,
+        0
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 26
+        },
+        {
+          "name": "shift",
+          "type": "FLOAT",
+          "widget": {
+            "name": "shift"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            27
+          ]
+        }
+      ],
+      "title": "モデルサンプリングオーラフロー",
+      "properties": {
+        "Node name for S&R": "ModelSamplingAuraFlow"
+      },
+      "widgets_values": [
+        3
+      ]
+    },
+    {
+      "id": 25,
+      "type": "CFGNorm",
+      "pos": [
+        3330,
+        85
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 27
+        },
+        {
+          "name": "strength",
+          "type": "FLOAT",
+          "widget": {
+            "name": "strength"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "patched_model",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            28
+          ]
+        }
+      ],
+      "title": "CFG正規化",
+      "properties": {
+        "Node name for S&R": "CFGNorm"
+      },
+      "widgets_values": [
+        1
+      ]
+    },
+    {
+      "id": 26,
+      "type": "TextEncodeQwenImageEditPlus",
+      "pos": [
+        2690,
+        160
+      ],
+      "size": [
+        450,
+        200
+      ],
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 31
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "shape": 7,
+          "link": 32
+        },
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "shape": 7,
+          "link": 30
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 29
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            33
+          ]
+        }
+      ],
+      "title": "TextEncode Positive",
+      "properties": {
+        "Node name for S&R": "TextEncodeQwenImageEditPlus"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 27,
+      "type": "KSampler",
+      "pos": [
+        3330,
+        175
+      ],
+      "size": [
+        315,
+        350
+      ],
+      "flags": {},
+      "order": 25,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 28
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 33
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 37
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 25
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        },
+        {
+          "name": "cfg",
+          "type": "FLOAT",
+          "widget": {
+            "name": "cfg"
+          },
+          "link": null
+        },
+        {
+          "name": "sampler_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "sampler_name"
+          },
+          "link": null
+        },
+        {
+          "name": "scheduler",
+          "type": "COMBO",
+          "widget": {
+            "name": "scheduler"
+          },
+          "link": null
+        },
+        {
+          "name": "denoise",
+          "type": "FLOAT",
+          "widget": {
+            "name": "denoise"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            38
+          ]
+        }
+      ],
+      "title": "Kサンプラー",
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        334558692371340,
+        "randomize",
+        4,
+        1,
+        "euler",
+        "simple",
+        1
+      ]
+    },
+    {
+      "id": 28,
+      "type": "VAEDecode",
+      "pos": [
+        3700,
+        455
+      ],
+      "size": [
+        215,
+        50
+      ],
+      "flags": {},
+      "order": 26,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 38
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 39
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            40
+          ]
+        }
+      ],
+      "title": "VAEデコード",
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 29,
+      "type": "SaveImage",
+      "pos": [
+        3970,
+        140
+      ],
+      "size": [
+        420,
+        500
+      ],
+      "flags": {},
+      "order": 27,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 40
+        }
+      ],
+      "outputs": [],
+      "title": "Save - 02 - Back View (背面全身)",
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "CharSheet-02_back"
+      ]
+    },
+    {
+      "id": 30,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        4400,
+        0
+      ],
+      "size": [
+        450,
+        200
+      ],
+      "flags": {},
+      "order": 30,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "value",
+          "type": "STRING",
+          "widget": {
+            "name": "value"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            48
+          ]
+        }
+      ],
+      "title": "03 - Left Side Profile (左側面)",
+      "properties": {
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        "Show the character in a full body left side profile view, character facing to the left, neutral standing pose, showing the complete left side silhouette from head to toe"
+      ]
+    },
+    {
+      "id": 31,
+      "type": "ImageScaleToTotalPixels",
+      "pos": [
+        4890,
+        0
+      ],
+      "size": [
+        310,
+        78
+      ],
+      "flags": {},
+      "order": 32,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 41
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            42,
+            49,
+            55
+          ]
+        }
+      ],
+      "title": "画像を総ピクセルにスケール",
+      "properties": {
+        "Node name for S&R": "ImageScaleToTotalPixels"
+      },
+      "widgets_values": [
+        "nearest-exact",
+        1,
+        1
+      ]
+    },
+    {
+      "id": 32,
+      "type": "VAEEncode",
+      "pos": [
+        5250,
+        0
+      ],
+      "size": [
+        215,
+        90
+      ],
+      "flags": {},
+      "order": 33,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pixels",
+          "type": "IMAGE",
+          "link": 42
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 43
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            44
+          ]
+        }
+      ],
+      "title": "VAEエンコード",
+      "properties": {
+        "Node name for S&R": "VAEEncode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 33,
+      "type": "TextEncodeQwenImageEditPlus",
+      "pos": [
+        4400,
+        260
+      ],
+      "size": [
+        450,
+        200
+      ],
+      "flags": {},
+      "order": 34,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 53
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "shape": 7,
+          "link": 54
+        },
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "shape": 7,
+          "link": 55
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            56
+          ]
+        }
+      ],
+      "title": "TextEncode Negative",
+      "properties": {
+        "Node name for S&R": "TextEncodeQwenImageEditPlus"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 34,
+      "type": "ModelSamplingAuraFlow",
+      "pos": [
+        5530,
+        0
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 31,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 45
+        },
+        {
+          "name": "shift",
+          "type": "FLOAT",
+          "widget": {
+            "name": "shift"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            46
+          ]
+        }
+      ],
+      "title": "モデルサンプリングオーラフロー",
+      "properties": {
+        "Node name for S&R": "ModelSamplingAuraFlow"
+      },
+      "widgets_values": [
+        3
+      ]
+    },
+    {
+      "id": 35,
+      "type": "CFGNorm",
+      "pos": [
+        5530,
+        85
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 35,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 46
+        },
+        {
+          "name": "strength",
+          "type": "FLOAT",
+          "widget": {
+            "name": "strength"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "patched_model",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            47
+          ]
+        }
+      ],
+      "title": "CFG正規化",
+      "properties": {
+        "Node name for S&R": "CFGNorm"
+      },
+      "widgets_values": [
+        1
+      ]
+    },
+    {
+      "id": 36,
+      "type": "TextEncodeQwenImageEditPlus",
+      "pos": [
+        4890,
+        160
+      ],
+      "size": [
+        450,
+        200
+      ],
+      "flags": {},
+      "order": 36,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 50
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "shape": 7,
+          "link": 51
+        },
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "shape": 7,
+          "link": 49
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 48
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            52
+          ]
+        }
+      ],
+      "title": "TextEncode Positive",
+      "properties": {
+        "Node name for S&R": "TextEncodeQwenImageEditPlus"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 37,
+      "type": "KSampler",
+      "pos": [
+        5530,
+        175
+      ],
+      "size": [
+        315,
+        350
+      ],
+      "flags": {},
+      "order": 37,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 47
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 52
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 56
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 44
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        },
+        {
+          "name": "cfg",
+          "type": "FLOAT",
+          "widget": {
+            "name": "cfg"
+          },
+          "link": null
+        },
+        {
+          "name": "sampler_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "sampler_name"
+          },
+          "link": null
+        },
+        {
+          "name": "scheduler",
+          "type": "COMBO",
+          "widget": {
+            "name": "scheduler"
+          },
+          "link": null
+        },
+        {
+          "name": "denoise",
+          "type": "FLOAT",
+          "widget": {
+            "name": "denoise"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            57
+          ]
+        }
+      ],
+      "title": "Kサンプラー",
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        81046325773124,
+        "randomize",
+        4,
+        1,
+        "euler",
+        "simple",
+        1
+      ]
+    },
+    {
+      "id": 38,
+      "type": "VAEDecode",
+      "pos": [
+        5900,
+        455
+      ],
+      "size": [
+        215,
+        50
+      ],
+      "flags": {},
+      "order": 38,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 57
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 58
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            59
+          ]
+        }
+      ],
+      "title": "VAEデコード",
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 39,
+      "type": "SaveImage",
+      "pos": [
+        6170,
+        140
+      ],
+      "size": [
+        420,
+        500
+      ],
+      "flags": {},
+      "order": 39,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 59
+        }
+      ],
+      "outputs": [],
+      "title": "Save - 03 - Left Side Profile (左側面)",
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "CharSheet-03_left_side"
+      ]
+    },
+    {
+      "id": 40,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        6600,
+        0
+      ],
+      "size": [
+        450,
+        200
+      ],
+      "flags": {},
+      "order": 42,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "value",
+          "type": "STRING",
+          "widget": {
+            "name": "value"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            67
+          ]
+        }
+      ],
+      "title": "04 - Right Side Profile (右側面)",
+      "properties": {
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        "Show the character in a full body right side profile view, character facing to the right, neutral standing pose, showing the complete right side silhouette from head to toe"
+      ]
+    },
+    {
+      "id": 41,
+      "type": "ImageScaleToTotalPixels",
+      "pos": [
+        7090,
+        0
+      ],
+      "size": [
+        310,
+        78
+      ],
+      "flags": {},
+      "order": 44,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 60
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            61,
+            68,
+            74
+          ]
+        }
+      ],
+      "title": "画像を総ピクセルにスケール",
+      "properties": {
+        "Node name for S&R": "ImageScaleToTotalPixels"
+      },
+      "widgets_values": [
+        "nearest-exact",
+        1,
+        1
+      ]
+    },
+    {
+      "id": 42,
+      "type": "VAEEncode",
+      "pos": [
+        7450,
+        0
+      ],
+      "size": [
+        215,
+        90
+      ],
+      "flags": {},
+      "order": 45,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pixels",
+          "type": "IMAGE",
+          "link": 61
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 62
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            63
+          ]
+        }
+      ],
+      "title": "VAEエンコード",
+      "properties": {
+        "Node name for S&R": "VAEEncode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 43,
+      "type": "TextEncodeQwenImageEditPlus",
+      "pos": [
+        6600,
+        260
+      ],
+      "size": [
+        450,
+        200
+      ],
+      "flags": {},
+      "order": 46,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 72
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "shape": 7,
+          "link": 73
+        },
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "shape": 7,
+          "link": 74
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            75
+          ]
+        }
+      ],
+      "title": "TextEncode Negative",
+      "properties": {
+        "Node name for S&R": "TextEncodeQwenImageEditPlus"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 44,
+      "type": "ModelSamplingAuraFlow",
+      "pos": [
+        7730,
+        0
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 43,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 64
+        },
+        {
+          "name": "shift",
+          "type": "FLOAT",
+          "widget": {
+            "name": "shift"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            65
+          ]
+        }
+      ],
+      "title": "モデルサンプリングオーラフロー",
+      "properties": {
+        "Node name for S&R": "ModelSamplingAuraFlow"
+      },
+      "widgets_values": [
+        3
+      ]
+    },
+    {
+      "id": 45,
+      "type": "CFGNorm",
+      "pos": [
+        7730,
+        85
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 47,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 65
+        },
+        {
+          "name": "strength",
+          "type": "FLOAT",
+          "widget": {
+            "name": "strength"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "patched_model",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            66
+          ]
+        }
+      ],
+      "title": "CFG正規化",
+      "properties": {
+        "Node name for S&R": "CFGNorm"
+      },
+      "widgets_values": [
+        1
+      ]
+    },
+    {
+      "id": 46,
+      "type": "TextEncodeQwenImageEditPlus",
+      "pos": [
+        7090,
+        160
+      ],
+      "size": [
+        450,
+        200
+      ],
+      "flags": {},
+      "order": 48,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 69
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "shape": 7,
+          "link": 70
+        },
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "shape": 7,
+          "link": 68
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 67
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            71
+          ]
+        }
+      ],
+      "title": "TextEncode Positive",
+      "properties": {
+        "Node name for S&R": "TextEncodeQwenImageEditPlus"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 47,
+      "type": "KSampler",
+      "pos": [
+        7730,
+        175
+      ],
+      "size": [
+        315,
+        350
+      ],
+      "flags": {},
+      "order": 49,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 66
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 71
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 75
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 63
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        },
+        {
+          "name": "cfg",
+          "type": "FLOAT",
+          "widget": {
+            "name": "cfg"
+          },
+          "link": null
+        },
+        {
+          "name": "sampler_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "sampler_name"
+          },
+          "link": null
+        },
+        {
+          "name": "scheduler",
+          "type": "COMBO",
+          "widget": {
+            "name": "scheduler"
+          },
+          "link": null
+        },
+        {
+          "name": "denoise",
+          "type": "FLOAT",
+          "widget": {
+            "name": "denoise"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            76
+          ]
+        }
+      ],
+      "title": "Kサンプラー",
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        314060504082306,
+        "randomize",
+        4,
+        1,
+        "euler",
+        "simple",
+        1
+      ]
+    },
+    {
+      "id": 48,
+      "type": "VAEDecode",
+      "pos": [
+        8100,
+        455
+      ],
+      "size": [
+        215,
+        50
+      ],
+      "flags": {},
+      "order": 50,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 76
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 77
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            78
+          ]
+        }
+      ],
+      "title": "VAEデコード",
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 49,
+      "type": "SaveImage",
+      "pos": [
+        8370,
+        140
+      ],
+      "size": [
+        420,
+        500
+      ],
+      "flags": {},
+      "order": 51,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 78
+        }
+      ],
+      "outputs": [],
+      "title": "Save - 04 - Right Side Profile (右側面)",
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "CharSheet-04_right_side"
+      ]
+    },
+    {
+      "id": 50,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        0,
+        800
+      ],
+      "size": [
+        450,
+        200
+      ],
+      "flags": {},
+      "order": 54,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "value",
+          "type": "STRING",
+          "widget": {
+            "name": "value"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            86
+          ]
+        }
+      ],
+      "title": "05 - 3/4 Front Left (前方左3/4)",
+      "properties": {
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        "Show the character from a 3/4 front-left angle, neutral standing pose, showing both front and left side details, full body visible from head to toe"
+      ]
+    },
+    {
+      "id": 51,
+      "type": "ImageScaleToTotalPixels",
+      "pos": [
+        490,
+        800
+      ],
+      "size": [
+        310,
+        78
+      ],
+      "flags": {},
+      "order": 56,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 79
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            80,
+            87,
+            93
+          ]
+        }
+      ],
+      "title": "画像を総ピクセルにスケール",
+      "properties": {
+        "Node name for S&R": "ImageScaleToTotalPixels"
+      },
+      "widgets_values": [
+        "nearest-exact",
+        1,
+        1
+      ]
+    },
+    {
+      "id": 52,
+      "type": "VAEEncode",
+      "pos": [
+        850,
+        800
+      ],
+      "size": [
+        215,
+        90
+      ],
+      "flags": {},
+      "order": 57,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pixels",
+          "type": "IMAGE",
+          "link": 80
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 81
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            82
+          ]
+        }
+      ],
+      "title": "VAEエンコード",
+      "properties": {
+        "Node name for S&R": "VAEEncode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 53,
+      "type": "TextEncodeQwenImageEditPlus",
+      "pos": [
+        0,
+        1060
+      ],
+      "size": [
+        450,
+        200
+      ],
+      "flags": {},
+      "order": 58,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 91
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "shape": 7,
+          "link": 92
+        },
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "shape": 7,
+          "link": 93
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            94
+          ]
+        }
+      ],
+      "title": "TextEncode Negative",
+      "properties": {
+        "Node name for S&R": "TextEncodeQwenImageEditPlus"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 54,
+      "type": "ModelSamplingAuraFlow",
+      "pos": [
+        1130,
+        800
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 55,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 83
+        },
+        {
+          "name": "shift",
+          "type": "FLOAT",
+          "widget": {
+            "name": "shift"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            84
+          ]
+        }
+      ],
+      "title": "モデルサンプリングオーラフロー",
+      "properties": {
+        "Node name for S&R": "ModelSamplingAuraFlow"
+      },
+      "widgets_values": [
+        3
+      ]
+    },
+    {
+      "id": 55,
+      "type": "CFGNorm",
+      "pos": [
+        1130,
+        885
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 59,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 84
+        },
+        {
+          "name": "strength",
+          "type": "FLOAT",
+          "widget": {
+            "name": "strength"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "patched_model",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            85
+          ]
+        }
+      ],
+      "title": "CFG正規化",
+      "properties": {
+        "Node name for S&R": "CFGNorm"
+      },
+      "widgets_values": [
+        1
+      ]
+    },
+    {
+      "id": 56,
+      "type": "TextEncodeQwenImageEditPlus",
+      "pos": [
+        490,
+        960
+      ],
+      "size": [
+        450,
+        200
+      ],
+      "flags": {},
+      "order": 60,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 88
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "shape": 7,
+          "link": 89
+        },
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "shape": 7,
+          "link": 87
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 86
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            90
+          ]
+        }
+      ],
+      "title": "TextEncode Positive",
+      "properties": {
+        "Node name for S&R": "TextEncodeQwenImageEditPlus"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 57,
+      "type": "KSampler",
+      "pos": [
+        1130,
+        975
+      ],
+      "size": [
+        315,
+        350
+      ],
+      "flags": {},
+      "order": 61,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 85
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 90
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 94
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 82
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        },
+        {
+          "name": "cfg",
+          "type": "FLOAT",
+          "widget": {
+            "name": "cfg"
+          },
+          "link": null
+        },
+        {
+          "name": "sampler_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "sampler_name"
+          },
+          "link": null
+        },
+        {
+          "name": "scheduler",
+          "type": "COMBO",
+          "widget": {
+            "name": "scheduler"
+          },
+          "link": null
+        },
+        {
+          "name": "denoise",
+          "type": "FLOAT",
+          "widget": {
+            "name": "denoise"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            95
+          ]
+        }
+      ],
+      "title": "Kサンプラー",
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        487163407764868,
+        "randomize",
+        4,
+        1,
+        "euler",
+        "simple",
+        1
+      ]
+    },
+    {
+      "id": 58,
+      "type": "VAEDecode",
+      "pos": [
+        1500,
+        1255
+      ],
+      "size": [
+        215,
+        50
+      ],
+      "flags": {},
+      "order": 62,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 95
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 96
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            97
+          ]
+        }
+      ],
+      "title": "VAEデコード",
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 59,
+      "type": "SaveImage",
+      "pos": [
+        1770,
+        940
+      ],
+      "size": [
+        420,
+        500
+      ],
+      "flags": {},
+      "order": 63,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 97
+        }
+      ],
+      "outputs": [],
+      "title": "Save - 05 - 3/4 Front Left (前方左3/4)",
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "CharSheet-05_3q_front_left"
+      ]
+    },
+    {
+      "id": 60,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        2200,
+        800
+      ],
+      "size": [
+        450,
+        200
+      ],
+      "flags": {},
+      "order": 66,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "value",
+          "type": "STRING",
+          "widget": {
+            "name": "value"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            105
+          ]
+        }
+      ],
+      "title": "06 - 3/4 Front Right (前方右3/4)",
+      "properties": {
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        "Show the character from a 3/4 front-right angle, neutral standing pose, showing both front and right side details, full body visible from head to toe"
+      ]
+    },
+    {
+      "id": 61,
+      "type": "ImageScaleToTotalPixels",
+      "pos": [
+        2690,
+        800
+      ],
+      "size": [
+        310,
+        78
+      ],
+      "flags": {},
+      "order": 68,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 98
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            99,
+            106,
+            112
+          ]
+        }
+      ],
+      "title": "画像を総ピクセルにスケール",
+      "properties": {
+        "Node name for S&R": "ImageScaleToTotalPixels"
+      },
+      "widgets_values": [
+        "nearest-exact",
+        1,
+        1
+      ]
+    },
+    {
+      "id": 62,
+      "type": "VAEEncode",
+      "pos": [
+        3050,
+        800
+      ],
+      "size": [
+        215,
+        90
+      ],
+      "flags": {},
+      "order": 69,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pixels",
+          "type": "IMAGE",
+          "link": 99
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 100
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            101
+          ]
+        }
+      ],
+      "title": "VAEエンコード",
+      "properties": {
+        "Node name for S&R": "VAEEncode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 63,
+      "type": "TextEncodeQwenImageEditPlus",
+      "pos": [
+        2200,
+        1060
+      ],
+      "size": [
+        450,
+        200
+      ],
+      "flags": {},
+      "order": 70,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 110
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "shape": 7,
+          "link": 111
+        },
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "shape": 7,
+          "link": 112
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            113
+          ]
+        }
+      ],
+      "title": "TextEncode Negative",
+      "properties": {
+        "Node name for S&R": "TextEncodeQwenImageEditPlus"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 64,
+      "type": "ModelSamplingAuraFlow",
+      "pos": [
+        3330,
+        800
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 67,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 102
+        },
+        {
+          "name": "shift",
+          "type": "FLOAT",
+          "widget": {
+            "name": "shift"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            103
+          ]
+        }
+      ],
+      "title": "モデルサンプリングオーラフロー",
+      "properties": {
+        "Node name for S&R": "ModelSamplingAuraFlow"
+      },
+      "widgets_values": [
+        3
+      ]
+    },
+    {
+      "id": 65,
+      "type": "CFGNorm",
+      "pos": [
+        3330,
+        885
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 71,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 103
+        },
+        {
+          "name": "strength",
+          "type": "FLOAT",
+          "widget": {
+            "name": "strength"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "patched_model",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            104
+          ]
+        }
+      ],
+      "title": "CFG正規化",
+      "properties": {
+        "Node name for S&R": "CFGNorm"
+      },
+      "widgets_values": [
+        1
+      ]
+    },
+    {
+      "id": 66,
+      "type": "TextEncodeQwenImageEditPlus",
+      "pos": [
+        2690,
+        960
+      ],
+      "size": [
+        450,
+        200
+      ],
+      "flags": {},
+      "order": 72,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 107
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "shape": 7,
+          "link": 108
+        },
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "shape": 7,
+          "link": 106
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 105
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            109
+          ]
+        }
+      ],
+      "title": "TextEncode Positive",
+      "properties": {
+        "Node name for S&R": "TextEncodeQwenImageEditPlus"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 67,
+      "type": "KSampler",
+      "pos": [
+        3330,
+        975
+      ],
+      "size": [
+        315,
+        350
+      ],
+      "flags": {},
+      "order": 73,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 104
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 109
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 113
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 101
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        },
+        {
+          "name": "cfg",
+          "type": "FLOAT",
+          "widget": {
+            "name": "cfg"
+          },
+          "link": null
+        },
+        {
+          "name": "sampler_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "sampler_name"
+          },
+          "link": null
+        },
+        {
+          "name": "scheduler",
+          "type": "COMBO",
+          "widget": {
+            "name": "scheduler"
+          },
+          "link": null
+        },
+        {
+          "name": "denoise",
+          "type": "FLOAT",
+          "widget": {
+            "name": "denoise"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            114
+          ]
+        }
+      ],
+      "title": "Kサンプラー",
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        309190190893490,
+        "randomize",
+        4,
+        1,
+        "euler",
+        "simple",
+        1
+      ]
+    },
+    {
+      "id": 68,
+      "type": "VAEDecode",
+      "pos": [
+        3700,
+        1255
+      ],
+      "size": [
+        215,
+        50
+      ],
+      "flags": {},
+      "order": 74,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 114
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 115
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            116
+          ]
+        }
+      ],
+      "title": "VAEデコード",
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 69,
+      "type": "SaveImage",
+      "pos": [
+        3970,
+        940
+      ],
+      "size": [
+        420,
+        500
+      ],
+      "flags": {},
+      "order": 75,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 116
+        }
+      ],
+      "outputs": [],
+      "title": "Save - 06 - 3/4 Front Right (前方右3/4)",
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "CharSheet-06_3q_front_right"
+      ]
+    },
+    {
+      "id": 70,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        4400,
+        800
+      ],
+      "size": [
+        450,
+        200
+      ],
+      "flags": {},
+      "order": 78,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "value",
+          "type": "STRING",
+          "widget": {
+            "name": "value"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            124
+          ]
+        }
+      ],
+      "title": "07 - 3/4 Back Left (後方左3/4)",
+      "properties": {
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        "Show the character from a 3/4 back-left angle, neutral standing pose, showing back and left side details, full body visible from head to toe"
+      ]
+    },
+    {
+      "id": 71,
+      "type": "ImageScaleToTotalPixels",
+      "pos": [
+        4890,
+        800
+      ],
+      "size": [
+        310,
+        78
+      ],
+      "flags": {},
+      "order": 80,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 117
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            118,
+            125,
+            131
+          ]
+        }
+      ],
+      "title": "画像を総ピクセルにスケール",
+      "properties": {
+        "Node name for S&R": "ImageScaleToTotalPixels"
+      },
+      "widgets_values": [
+        "nearest-exact",
+        1,
+        1
+      ]
+    },
+    {
+      "id": 72,
+      "type": "VAEEncode",
+      "pos": [
+        5250,
+        800
+      ],
+      "size": [
+        215,
+        90
+      ],
+      "flags": {},
+      "order": 81,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pixels",
+          "type": "IMAGE",
+          "link": 118
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 119
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            120
+          ]
+        }
+      ],
+      "title": "VAEエンコード",
+      "properties": {
+        "Node name for S&R": "VAEEncode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 73,
+      "type": "TextEncodeQwenImageEditPlus",
+      "pos": [
+        4400,
+        1060
+      ],
+      "size": [
+        450,
+        200
+      ],
+      "flags": {},
+      "order": 82,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 129
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "shape": 7,
+          "link": 130
+        },
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "shape": 7,
+          "link": 131
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            132
+          ]
+        }
+      ],
+      "title": "TextEncode Negative",
+      "properties": {
+        "Node name for S&R": "TextEncodeQwenImageEditPlus"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 74,
+      "type": "ModelSamplingAuraFlow",
+      "pos": [
+        5530,
+        800
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 79,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 121
+        },
+        {
+          "name": "shift",
+          "type": "FLOAT",
+          "widget": {
+            "name": "shift"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            122
+          ]
+        }
+      ],
+      "title": "モデルサンプリングオーラフロー",
+      "properties": {
+        "Node name for S&R": "ModelSamplingAuraFlow"
+      },
+      "widgets_values": [
+        3
+      ]
+    },
+    {
+      "id": 75,
+      "type": "CFGNorm",
+      "pos": [
+        5530,
+        885
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 83,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 122
+        },
+        {
+          "name": "strength",
+          "type": "FLOAT",
+          "widget": {
+            "name": "strength"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "patched_model",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            123
+          ]
+        }
+      ],
+      "title": "CFG正規化",
+      "properties": {
+        "Node name for S&R": "CFGNorm"
+      },
+      "widgets_values": [
+        1
+      ]
+    },
+    {
+      "id": 76,
+      "type": "TextEncodeQwenImageEditPlus",
+      "pos": [
+        4890,
+        960
+      ],
+      "size": [
+        450,
+        200
+      ],
+      "flags": {},
+      "order": 84,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 126
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "shape": 7,
+          "link": 127
+        },
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "shape": 7,
+          "link": 125
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 124
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            128
+          ]
+        }
+      ],
+      "title": "TextEncode Positive",
+      "properties": {
+        "Node name for S&R": "TextEncodeQwenImageEditPlus"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 77,
+      "type": "KSampler",
+      "pos": [
+        5530,
+        975
+      ],
+      "size": [
+        315,
+        350
+      ],
+      "flags": {},
+      "order": 85,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 123
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 128
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 132
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 120
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        },
+        {
+          "name": "cfg",
+          "type": "FLOAT",
+          "widget": {
+            "name": "cfg"
+          },
+          "link": null
+        },
+        {
+          "name": "sampler_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "sampler_name"
+          },
+          "link": null
+        },
+        {
+          "name": "scheduler",
+          "type": "COMBO",
+          "widget": {
+            "name": "scheduler"
+          },
+          "link": null
+        },
+        {
+          "name": "denoise",
+          "type": "FLOAT",
+          "widget": {
+            "name": "denoise"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            133
+          ]
+        }
+      ],
+      "title": "Kサンプラー",
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        383786667628272,
+        "randomize",
+        4,
+        1,
+        "euler",
+        "simple",
+        1
+      ]
+    },
+    {
+      "id": 78,
+      "type": "VAEDecode",
+      "pos": [
+        5900,
+        1255
+      ],
+      "size": [
+        215,
+        50
+      ],
+      "flags": {},
+      "order": 86,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 133
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 134
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            135
+          ]
+        }
+      ],
+      "title": "VAEデコード",
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 79,
+      "type": "SaveImage",
+      "pos": [
+        6170,
+        940
+      ],
+      "size": [
+        420,
+        500
+      ],
+      "flags": {},
+      "order": 87,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 135
+        }
+      ],
+      "outputs": [],
+      "title": "Save - 07 - 3/4 Back Left (後方左3/4)",
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "CharSheet-07_3q_back_left"
+      ]
+    },
+    {
+      "id": 80,
+      "type": "PrimitiveStringMultiline",
+      "pos": [
+        6600,
+        800
+      ],
+      "size": [
+        450,
+        200
+      ],
+      "flags": {},
+      "order": 90,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "value",
+          "type": "STRING",
+          "widget": {
+            "name": "value"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "STRING",
+          "type": "STRING",
+          "links": [
+            143
+          ]
+        }
+      ],
+      "title": "08 - Expression Close-up (表情アップ)",
+      "properties": {
+        "Node name for S&R": "PrimitiveStringMultiline"
+      },
+      "widgets_values": [
+        "Show the character face in a close-up portrait, straight-on view toward the camera, neutral expression, face and upper body visible, showing all facial features and hair details clearly"
+      ]
+    },
+    {
+      "id": 81,
+      "type": "ImageScaleToTotalPixels",
+      "pos": [
+        7090,
+        800
+      ],
+      "size": [
+        310,
+        78
+      ],
+      "flags": {},
+      "order": 92,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 136
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            137,
+            144,
+            150
+          ]
+        }
+      ],
+      "title": "画像を総ピクセルにスケール",
+      "properties": {
+        "Node name for S&R": "ImageScaleToTotalPixels"
+      },
+      "widgets_values": [
+        "nearest-exact",
+        1,
+        1
+      ]
+    },
+    {
+      "id": 82,
+      "type": "VAEEncode",
+      "pos": [
+        7450,
+        800
+      ],
+      "size": [
+        215,
+        90
+      ],
+      "flags": {},
+      "order": 93,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pixels",
+          "type": "IMAGE",
+          "link": 137
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 138
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            139
+          ]
+        }
+      ],
+      "title": "VAEエンコード",
+      "properties": {
+        "Node name for S&R": "VAEEncode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 83,
+      "type": "TextEncodeQwenImageEditPlus",
+      "pos": [
+        6600,
+        1060
+      ],
+      "size": [
+        450,
+        200
+      ],
+      "flags": {},
+      "order": 94,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 148
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "shape": 7,
+          "link": 149
+        },
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "shape": 7,
+          "link": 150
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            151
+          ]
+        }
+      ],
+      "title": "TextEncode Negative",
+      "properties": {
+        "Node name for S&R": "TextEncodeQwenImageEditPlus"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 84,
+      "type": "ModelSamplingAuraFlow",
+      "pos": [
+        7730,
+        800
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 91,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 140
+        },
+        {
+          "name": "shift",
+          "type": "FLOAT",
+          "widget": {
+            "name": "shift"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            141
+          ]
+        }
+      ],
+      "title": "モデルサンプリングオーラフロー",
+      "properties": {
+        "Node name for S&R": "ModelSamplingAuraFlow"
+      },
+      "widgets_values": [
+        3
+      ]
+    },
+    {
+      "id": 85,
+      "type": "CFGNorm",
+      "pos": [
+        7730,
+        885
+      ],
+      "size": [
+        270,
+        70
+      ],
+      "flags": {},
+      "order": 95,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 141
+        },
+        {
+          "name": "strength",
+          "type": "FLOAT",
+          "widget": {
+            "name": "strength"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "patched_model",
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            142
+          ]
+        }
+      ],
+      "title": "CFG正規化",
+      "properties": {
+        "Node name for S&R": "CFGNorm"
+      },
+      "widgets_values": [
+        1
+      ]
+    },
+    {
+      "id": 86,
+      "type": "TextEncodeQwenImageEditPlus",
+      "pos": [
+        7090,
+        960
+      ],
+      "size": [
+        450,
+        200
+      ],
+      "flags": {},
+      "order": 96,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 145
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "shape": 7,
+          "link": 146
+        },
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "shape": 7,
+          "link": 144
+        },
+        {
+          "name": "prompt",
+          "type": "STRING",
+          "widget": {
+            "name": "prompt"
+          },
+          "link": 143
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            147
+          ]
+        }
+      ],
+      "title": "TextEncode Positive",
+      "properties": {
+        "Node name for S&R": "TextEncodeQwenImageEditPlus"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 87,
+      "type": "KSampler",
+      "pos": [
+        7730,
+        975
+      ],
+      "size": [
+        315,
+        350
+      ],
+      "flags": {},
+      "order": 97,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 142
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 147
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 151
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 139
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": null
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": null
+        },
+        {
+          "name": "cfg",
+          "type": "FLOAT",
+          "widget": {
+            "name": "cfg"
+          },
+          "link": null
+        },
+        {
+          "name": "sampler_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "sampler_name"
+          },
+          "link": null
+        },
+        {
+          "name": "scheduler",
+          "type": "COMBO",
+          "widget": {
+            "name": "scheduler"
+          },
+          "link": null
+        },
+        {
+          "name": "denoise",
+          "type": "FLOAT",
+          "widget": {
+            "name": "denoise"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            152
+          ]
+        }
+      ],
+      "title": "Kサンプラー",
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        121084260397941,
+        "randomize",
+        4,
+        1,
+        "euler",
+        "simple",
+        1
+      ]
+    },
+    {
+      "id": 88,
+      "type": "VAEDecode",
+      "pos": [
+        8100,
+        1255
+      ],
+      "size": [
+        215,
+        50
+      ],
+      "flags": {},
+      "order": 98,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 152
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 153
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            154
+          ]
+        }
+      ],
+      "title": "VAEデコード",
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 89,
+      "type": "SaveImage",
+      "pos": [
+        8370,
+        940
+      ],
+      "size": [
+        420,
+        500
+      ],
+      "flags": {},
+      "order": 99,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 154
+        }
+      ],
+      "outputs": [],
+      "title": "Save - 08 - Expression Close-up (表情アップ)",
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "CharSheet-08_expression"
+      ]
+    },
+    {
+      "id": 100,
+      "type": "Note",
+      "pos": [
+        -1200,
+        0
+      ],
+      "size": [
+        430,
+        200
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "title": "Character Sheet - Models",
+      "properties": {
+        "Node name for S&R": "Note"
+      },
+      "widgets_values": [
+        "## キャラクターシート生成ワークフロー\n\n**必要モデル:**\n- VAE: qwen_image_vae.safetensors\n- CLIP: qwen_2.5_vl_7b_fp8_scaled.safetensors\n- UNET: qwen_image_edit_2509_fp8_e4m3fn.safetensors\n- LoRA1: Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors\n- LoRA2: Qwen-Edit-2509-Multiple-angles.safetensors\n\n**使い方:** キャラクター画像を読み込んで実行すると8方向のキャラクターシートが生成されます"
+      ],
+      "color": "#323",
+      "bgcolor": "#535"
+    }
+  ],
+  "links": [
+    [
+      1,
+      4,
+      0,
+      5,
+      0,
+      "MODEL"
+    ],
+    [
+      2,
+      5,
+      0,
+      6,
+      0,
+      "MODEL"
+    ],
+    [
+      3,
+      1,
+      0,
+      11,
+      0,
+      "IMAGE"
+    ],
+    [
+      4,
+      11,
+      0,
+      12,
+      0,
+      "IMAGE"
+    ],
+    [
+      5,
+      2,
+      0,
+      12,
+      1,
+      "VAE"
+    ],
+    [
+      6,
+      12,
+      0,
+      17,
+      3,
+      "LATENT"
+    ],
+    [
+      7,
+      6,
+      0,
+      14,
+      0,
+      "MODEL"
+    ],
+    [
+      8,
+      14,
+      0,
+      15,
+      0,
+      "MODEL"
+    ],
+    [
+      9,
+      15,
+      0,
+      17,
+      0,
+      "MODEL"
+    ],
+    [
+      10,
+      10,
+      0,
+      16,
+      3,
+      "STRING"
+    ],
+    [
+      11,
+      11,
+      0,
+      16,
+      2,
+      "IMAGE"
+    ],
+    [
+      12,
+      3,
+      0,
+      16,
+      0,
+      "CLIP"
+    ],
+    [
+      13,
+      2,
+      0,
+      16,
+      1,
+      "VAE"
+    ],
+    [
+      14,
+      16,
+      0,
+      17,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      15,
+      3,
+      0,
+      13,
+      0,
+      "CLIP"
+    ],
+    [
+      16,
+      2,
+      0,
+      13,
+      1,
+      "VAE"
+    ],
+    [
+      17,
+      11,
+      0,
+      13,
+      2,
+      "IMAGE"
+    ],
+    [
+      18,
+      13,
+      0,
+      17,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      19,
+      17,
+      0,
+      18,
+      0,
+      "LATENT"
+    ],
+    [
+      20,
+      2,
+      0,
+      18,
+      1,
+      "VAE"
+    ],
+    [
+      21,
+      18,
+      0,
+      19,
+      0,
+      "IMAGE"
+    ],
+    [
+      22,
+      1,
+      0,
+      21,
+      0,
+      "IMAGE"
+    ],
+    [
+      23,
+      21,
+      0,
+      22,
+      0,
+      "IMAGE"
+    ],
+    [
+      24,
+      2,
+      0,
+      22,
+      1,
+      "VAE"
+    ],
+    [
+      25,
+      22,
+      0,
+      27,
+      3,
+      "LATENT"
+    ],
+    [
+      26,
+      6,
+      0,
+      24,
+      0,
+      "MODEL"
+    ],
+    [
+      27,
+      24,
+      0,
+      25,
+      0,
+      "MODEL"
+    ],
+    [
+      28,
+      25,
+      0,
+      27,
+      0,
+      "MODEL"
+    ],
+    [
+      29,
+      20,
+      0,
+      26,
+      3,
+      "STRING"
+    ],
+    [
+      30,
+      21,
+      0,
+      26,
+      2,
+      "IMAGE"
+    ],
+    [
+      31,
+      3,
+      0,
+      26,
+      0,
+      "CLIP"
+    ],
+    [
+      32,
+      2,
+      0,
+      26,
+      1,
+      "VAE"
+    ],
+    [
+      33,
+      26,
+      0,
+      27,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      34,
+      3,
+      0,
+      23,
+      0,
+      "CLIP"
+    ],
+    [
+      35,
+      2,
+      0,
+      23,
+      1,
+      "VAE"
+    ],
+    [
+      36,
+      21,
+      0,
+      23,
+      2,
+      "IMAGE"
+    ],
+    [
+      37,
+      23,
+      0,
+      27,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      38,
+      27,
+      0,
+      28,
+      0,
+      "LATENT"
+    ],
+    [
+      39,
+      2,
+      0,
+      28,
+      1,
+      "VAE"
+    ],
+    [
+      40,
+      28,
+      0,
+      29,
+      0,
+      "IMAGE"
+    ],
+    [
+      41,
+      1,
+      0,
+      31,
+      0,
+      "IMAGE"
+    ],
+    [
+      42,
+      31,
+      0,
+      32,
+      0,
+      "IMAGE"
+    ],
+    [
+      43,
+      2,
+      0,
+      32,
+      1,
+      "VAE"
+    ],
+    [
+      44,
+      32,
+      0,
+      37,
+      3,
+      "LATENT"
+    ],
+    [
+      45,
+      6,
+      0,
+      34,
+      0,
+      "MODEL"
+    ],
+    [
+      46,
+      34,
+      0,
+      35,
+      0,
+      "MODEL"
+    ],
+    [
+      47,
+      35,
+      0,
+      37,
+      0,
+      "MODEL"
+    ],
+    [
+      48,
+      30,
+      0,
+      36,
+      3,
+      "STRING"
+    ],
+    [
+      49,
+      31,
+      0,
+      36,
+      2,
+      "IMAGE"
+    ],
+    [
+      50,
+      3,
+      0,
+      36,
+      0,
+      "CLIP"
+    ],
+    [
+      51,
+      2,
+      0,
+      36,
+      1,
+      "VAE"
+    ],
+    [
+      52,
+      36,
+      0,
+      37,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      53,
+      3,
+      0,
+      33,
+      0,
+      "CLIP"
+    ],
+    [
+      54,
+      2,
+      0,
+      33,
+      1,
+      "VAE"
+    ],
+    [
+      55,
+      31,
+      0,
+      33,
+      2,
+      "IMAGE"
+    ],
+    [
+      56,
+      33,
+      0,
+      37,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      57,
+      37,
+      0,
+      38,
+      0,
+      "LATENT"
+    ],
+    [
+      58,
+      2,
+      0,
+      38,
+      1,
+      "VAE"
+    ],
+    [
+      59,
+      38,
+      0,
+      39,
+      0,
+      "IMAGE"
+    ],
+    [
+      60,
+      1,
+      0,
+      41,
+      0,
+      "IMAGE"
+    ],
+    [
+      61,
+      41,
+      0,
+      42,
+      0,
+      "IMAGE"
+    ],
+    [
+      62,
+      2,
+      0,
+      42,
+      1,
+      "VAE"
+    ],
+    [
+      63,
+      42,
+      0,
+      47,
+      3,
+      "LATENT"
+    ],
+    [
+      64,
+      6,
+      0,
+      44,
+      0,
+      "MODEL"
+    ],
+    [
+      65,
+      44,
+      0,
+      45,
+      0,
+      "MODEL"
+    ],
+    [
+      66,
+      45,
+      0,
+      47,
+      0,
+      "MODEL"
+    ],
+    [
+      67,
+      40,
+      0,
+      46,
+      3,
+      "STRING"
+    ],
+    [
+      68,
+      41,
+      0,
+      46,
+      2,
+      "IMAGE"
+    ],
+    [
+      69,
+      3,
+      0,
+      46,
+      0,
+      "CLIP"
+    ],
+    [
+      70,
+      2,
+      0,
+      46,
+      1,
+      "VAE"
+    ],
+    [
+      71,
+      46,
+      0,
+      47,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      72,
+      3,
+      0,
+      43,
+      0,
+      "CLIP"
+    ],
+    [
+      73,
+      2,
+      0,
+      43,
+      1,
+      "VAE"
+    ],
+    [
+      74,
+      41,
+      0,
+      43,
+      2,
+      "IMAGE"
+    ],
+    [
+      75,
+      43,
+      0,
+      47,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      76,
+      47,
+      0,
+      48,
+      0,
+      "LATENT"
+    ],
+    [
+      77,
+      2,
+      0,
+      48,
+      1,
+      "VAE"
+    ],
+    [
+      78,
+      48,
+      0,
+      49,
+      0,
+      "IMAGE"
+    ],
+    [
+      79,
+      1,
+      0,
+      51,
+      0,
+      "IMAGE"
+    ],
+    [
+      80,
+      51,
+      0,
+      52,
+      0,
+      "IMAGE"
+    ],
+    [
+      81,
+      2,
+      0,
+      52,
+      1,
+      "VAE"
+    ],
+    [
+      82,
+      52,
+      0,
+      57,
+      3,
+      "LATENT"
+    ],
+    [
+      83,
+      6,
+      0,
+      54,
+      0,
+      "MODEL"
+    ],
+    [
+      84,
+      54,
+      0,
+      55,
+      0,
+      "MODEL"
+    ],
+    [
+      85,
+      55,
+      0,
+      57,
+      0,
+      "MODEL"
+    ],
+    [
+      86,
+      50,
+      0,
+      56,
+      3,
+      "STRING"
+    ],
+    [
+      87,
+      51,
+      0,
+      56,
+      2,
+      "IMAGE"
+    ],
+    [
+      88,
+      3,
+      0,
+      56,
+      0,
+      "CLIP"
+    ],
+    [
+      89,
+      2,
+      0,
+      56,
+      1,
+      "VAE"
+    ],
+    [
+      90,
+      56,
+      0,
+      57,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      91,
+      3,
+      0,
+      53,
+      0,
+      "CLIP"
+    ],
+    [
+      92,
+      2,
+      0,
+      53,
+      1,
+      "VAE"
+    ],
+    [
+      93,
+      51,
+      0,
+      53,
+      2,
+      "IMAGE"
+    ],
+    [
+      94,
+      53,
+      0,
+      57,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      95,
+      57,
+      0,
+      58,
+      0,
+      "LATENT"
+    ],
+    [
+      96,
+      2,
+      0,
+      58,
+      1,
+      "VAE"
+    ],
+    [
+      97,
+      58,
+      0,
+      59,
+      0,
+      "IMAGE"
+    ],
+    [
+      98,
+      1,
+      0,
+      61,
+      0,
+      "IMAGE"
+    ],
+    [
+      99,
+      61,
+      0,
+      62,
+      0,
+      "IMAGE"
+    ],
+    [
+      100,
+      2,
+      0,
+      62,
+      1,
+      "VAE"
+    ],
+    [
+      101,
+      62,
+      0,
+      67,
+      3,
+      "LATENT"
+    ],
+    [
+      102,
+      6,
+      0,
+      64,
+      0,
+      "MODEL"
+    ],
+    [
+      103,
+      64,
+      0,
+      65,
+      0,
+      "MODEL"
+    ],
+    [
+      104,
+      65,
+      0,
+      67,
+      0,
+      "MODEL"
+    ],
+    [
+      105,
+      60,
+      0,
+      66,
+      3,
+      "STRING"
+    ],
+    [
+      106,
+      61,
+      0,
+      66,
+      2,
+      "IMAGE"
+    ],
+    [
+      107,
+      3,
+      0,
+      66,
+      0,
+      "CLIP"
+    ],
+    [
+      108,
+      2,
+      0,
+      66,
+      1,
+      "VAE"
+    ],
+    [
+      109,
+      66,
+      0,
+      67,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      110,
+      3,
+      0,
+      63,
+      0,
+      "CLIP"
+    ],
+    [
+      111,
+      2,
+      0,
+      63,
+      1,
+      "VAE"
+    ],
+    [
+      112,
+      61,
+      0,
+      63,
+      2,
+      "IMAGE"
+    ],
+    [
+      113,
+      63,
+      0,
+      67,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      114,
+      67,
+      0,
+      68,
+      0,
+      "LATENT"
+    ],
+    [
+      115,
+      2,
+      0,
+      68,
+      1,
+      "VAE"
+    ],
+    [
+      116,
+      68,
+      0,
+      69,
+      0,
+      "IMAGE"
+    ],
+    [
+      117,
+      1,
+      0,
+      71,
+      0,
+      "IMAGE"
+    ],
+    [
+      118,
+      71,
+      0,
+      72,
+      0,
+      "IMAGE"
+    ],
+    [
+      119,
+      2,
+      0,
+      72,
+      1,
+      "VAE"
+    ],
+    [
+      120,
+      72,
+      0,
+      77,
+      3,
+      "LATENT"
+    ],
+    [
+      121,
+      6,
+      0,
+      74,
+      0,
+      "MODEL"
+    ],
+    [
+      122,
+      74,
+      0,
+      75,
+      0,
+      "MODEL"
+    ],
+    [
+      123,
+      75,
+      0,
+      77,
+      0,
+      "MODEL"
+    ],
+    [
+      124,
+      70,
+      0,
+      76,
+      3,
+      "STRING"
+    ],
+    [
+      125,
+      71,
+      0,
+      76,
+      2,
+      "IMAGE"
+    ],
+    [
+      126,
+      3,
+      0,
+      76,
+      0,
+      "CLIP"
+    ],
+    [
+      127,
+      2,
+      0,
+      76,
+      1,
+      "VAE"
+    ],
+    [
+      128,
+      76,
+      0,
+      77,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      129,
+      3,
+      0,
+      73,
+      0,
+      "CLIP"
+    ],
+    [
+      130,
+      2,
+      0,
+      73,
+      1,
+      "VAE"
+    ],
+    [
+      131,
+      71,
+      0,
+      73,
+      2,
+      "IMAGE"
+    ],
+    [
+      132,
+      73,
+      0,
+      77,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      133,
+      77,
+      0,
+      78,
+      0,
+      "LATENT"
+    ],
+    [
+      134,
+      2,
+      0,
+      78,
+      1,
+      "VAE"
+    ],
+    [
+      135,
+      78,
+      0,
+      79,
+      0,
+      "IMAGE"
+    ],
+    [
+      136,
+      1,
+      0,
+      81,
+      0,
+      "IMAGE"
+    ],
+    [
+      137,
+      81,
+      0,
+      82,
+      0,
+      "IMAGE"
+    ],
+    [
+      138,
+      2,
+      0,
+      82,
+      1,
+      "VAE"
+    ],
+    [
+      139,
+      82,
+      0,
+      87,
+      3,
+      "LATENT"
+    ],
+    [
+      140,
+      6,
+      0,
+      84,
+      0,
+      "MODEL"
+    ],
+    [
+      141,
+      84,
+      0,
+      85,
+      0,
+      "MODEL"
+    ],
+    [
+      142,
+      85,
+      0,
+      87,
+      0,
+      "MODEL"
+    ],
+    [
+      143,
+      80,
+      0,
+      86,
+      3,
+      "STRING"
+    ],
+    [
+      144,
+      81,
+      0,
+      86,
+      2,
+      "IMAGE"
+    ],
+    [
+      145,
+      3,
+      0,
+      86,
+      0,
+      "CLIP"
+    ],
+    [
+      146,
+      2,
+      0,
+      86,
+      1,
+      "VAE"
+    ],
+    [
+      147,
+      86,
+      0,
+      87,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      148,
+      3,
+      0,
+      83,
+      0,
+      "CLIP"
+    ],
+    [
+      149,
+      2,
+      0,
+      83,
+      1,
+      "VAE"
+    ],
+    [
+      150,
+      81,
+      0,
+      83,
+      2,
+      "IMAGE"
+    ],
+    [
+      151,
+      83,
+      0,
+      87,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      152,
+      87,
+      0,
+      88,
+      0,
+      "LATENT"
+    ],
+    [
+      153,
+      2,
+      0,
+      88,
+      1,
+      "VAE"
+    ],
+    [
+      154,
+      88,
+      0,
+      89,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "01 - Front View (正面全身)",
+      "bounding": [
+        -20,
+        -30,
+        2220,
+        790
+      ],
+      "color": "#3a3a4a",
+      "font_size": 18
+    },
+    {
+      "title": "02 - Back View (背面全身)",
+      "bounding": [
+        2180,
+        -30,
+        2220,
+        790
+      ],
+      "color": "#3a4a3a",
+      "font_size": 18
+    },
+    {
+      "title": "03 - Left Side Profile (左側面)",
+      "bounding": [
+        4380,
+        -30,
+        2220,
+        790
+      ],
+      "color": "#4a3a3a",
+      "font_size": 18
+    },
+    {
+      "title": "04 - Right Side Profile (右側面)",
+      "bounding": [
+        6580,
+        -30,
+        2220,
+        790
+      ],
+      "color": "#3a4a4a",
+      "font_size": 18
+    },
+    {
+      "title": "05 - 3/4 Front Left (前方左3/4)",
+      "bounding": [
+        -20,
+        770,
+        2220,
+        790
+      ],
+      "color": "#4a4a3a",
+      "font_size": 18
+    },
+    {
+      "title": "06 - 3/4 Front Right (前方右3/4)",
+      "bounding": [
+        2180,
+        770,
+        2220,
+        790
+      ],
+      "color": "#4a3a4a",
+      "font_size": 18
+    },
+    {
+      "title": "07 - 3/4 Back Left (後方左3/4)",
+      "bounding": [
+        4380,
+        770,
+        2220,
+        790
+      ],
+      "color": "#3a4440",
+      "font_size": 18
+    },
+    {
+      "title": "08 - Expression Close-up (表情アップ)",
+      "bounding": [
+        6580,
+        770,
+        2220,
+        790
+      ],
+      "color": "#4a4040",
+      "font_size": 18
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.3,
+      "offset": [
+        1200,
+        200
+      ]
+    }
+  },
+  "version": 0.4
+}
