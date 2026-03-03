@@ -9,12 +9,18 @@ character_sheet_v1.0_rmbg_nobg.json
 
 character_sheet_card_v1.0.json
 8種類のフォームの画像を生成し、2X8並列の4102x2060ピクセルの大きなタイル画像を生成します。
+<img width="4120" height="2060" alt="CharSheet-CARD_00015_" src="https://github.com/user-attachments/assets/7b6eb5b0-cbdc-4ecb-a427-bfb3a88a2a11" />
+
+
 
 character_sheet_card_v1.0_nobg.json
 タイル画像生成で背景が生成されないバージョンです。
 
 character_sheet_card_v1.0_rmbg_nobg.json
 タイル画像生成で、事前にレファレンス画像から背景削除するタイプです。より鮮明にキャラクタを認識できるので一貫性が上がります。
+
+<img width="4120" height="2060" alt="CharSheet-CARD_00014_" src="https://github.com/user-attachments/assets/9bdacacb-1c6d-4117-b50b-65405ec888da" />
+
 
 
 ## 構成 (87ノード、154リンク)
