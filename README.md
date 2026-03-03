@@ -7,6 +7,9 @@ character_sheet_v1.0.json（ComfyUI UI フォーマット）
 character_sheet_card_v1.0.json
 上記に加えて、2X8並列の4102x2060ピクセルの大きなタイル画像を生成します。
 
+character_sheet_card_v1.0_nobg.json
+背景が生成されないバージョンです。
+
 
 
 ## 構成 (87ノード、154リンク)
