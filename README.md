@@ -4,20 +4,17 @@
 character_sheet_v1.0.json（ComfyUI UI フォーマット）
 8種類のフォームの画像を生成します。
 
-character_sheet_card_v1.0_nobg.json
-背景が生成されないバージョンです。
-
 character_sheet_v1.0_rmbg_nobg.json
 事前にレファレンス画像から背景削除するタイプです。より鮮明にキャラクタを認識できるので一貫性が上がります。
 
 character_sheet_card_v1.0.json
-上記に加えて、2X8並列の4102x2060ピクセルの大きなタイル画像を生成します。
+8種類のフォームの画像を生成し、2X8並列の4102x2060ピクセルの大きなタイル画像を生成します。
 
 character_sheet_card_v1.0_nobg.json
-背景が生成されないバージョンです。
+タイル画像生成で背景が生成されないバージョンです。
 
 character_sheet_card_v1.0_rmbg_nobg.json
-事前にレファレンス画像から背景削除するタイプです。より鮮明にキャラクタを認識できるので一貫性が上がります。
+タイル画像生成で、事前にレファレンス画像から背景削除するタイプです。より鮮明にキャラクタを認識できるので一貫性が上がります。
 
 
 ## 構成 (87ノード、154リンク)
@@ -52,4 +49,8 @@ UNET: qwen_image_edit_2509_fp8_e4m3fn.safetensors
 LoRA 1: Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors
 
 LoRA 2: Qwen-Edit-2509-Multiple-angles.safetensors
+
+背景削除用のモデルも必要です。
+
+URL: https://huggingface.co/briaai/RMBG-1.4
 
